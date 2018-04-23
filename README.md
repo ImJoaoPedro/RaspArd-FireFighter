@@ -29,6 +29,7 @@
     2 - Flame Sensor
 
     ArduinoRoMeu
+    I2C - LCD
     Digital
     2 - Green Button
     3 - Red Button
