@@ -1,3 +1,6 @@
 This is the I/O of the boards
 
 Please fill, the data was not saved when i did big shit xD
+
+cmd: tightvncserver  
+VNC pw: TooRRooT
