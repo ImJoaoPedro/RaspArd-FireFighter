@@ -20,9 +20,9 @@
     
     **Digital**
     2 - Echo US
-    3 - Trig US (yellow)
+    3 - Trig US (black)
     4 - Echo US
-    5 - Trig US (black)
+    5 - Trig US (yellow)
     20 - SDA I2C (IRCamera)
     21 - SCL I2C (IRCamera)
    
