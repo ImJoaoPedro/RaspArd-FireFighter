@@ -4,7 +4,7 @@
 
 # TODO
 
-    :ballot_box_with_check: Finish a better readme
+    - Finish a better readme
     - Everything else
     - Create roadmap
 
