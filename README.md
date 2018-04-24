@@ -4,8 +4,9 @@
 
 # TODO
 
-    - finish a better readme
-    - everything else
+    - Finish a better readme
+    - Everything else
+    - Create roadmap
 
 # Current Pin Configuration
     
