@@ -76,26 +76,42 @@ void loop()
     Ix[3] += (s & 0x30) <<4;
     Iy[3] += (s & 0xC0) <<2;
 
+    String outString ="";
     for(i=0; i<4; i++)
     {
       if (Ix[i] < 1000)
-        Serial.print("");
+        outString.concat("");
       if (Ix[i] < 100)  
-        Serial.print("");
+        outString.concat("");
       if (Ix[i] < 10)  
-        Serial.print("");
-      Serial.print( int(Ix[i]) );
-      Serial.print(",");
+        outString.concat("");
+      outString.concat( int(Ix[i]) );
+      outString.concat(",");
       if (Iy[i] < 1000)
-        Serial.print("");
+        outString.concat("");
       if (Iy[i] < 100)  
-        Serial.print("");
+        outString.concat("");
       if (Iy[i] < 10)  
-        Serial.print("");
-      Serial.print( int(Iy[i]) );
+        outString.concat("");
+      outString.concat( int(Iy[i]) );
       if (i<3)
-        Serial.print(",");
+        outString.concat(",");
     }
-    Serial.print(",");
-    Serial.println(int(analogRead(2)));
+    outString.concat(",");
+    outString.concat(int(analogRead(2)));
+    
+    String input = outString;
+    int firstVal, secondVal;
+    
+    for (int i = 0; i < input.length(); i++) {
+      if (input.substring(i, i+1) == ",") {
+        firstVal = input.substring(0, i).toInt();
+        secondVal = input.substring(i+1).toInt();
+        Serial.print(firstVal);
+        Serial.print(" , ");
+        Serial.println(secondVal);
+        break;
+      }
+    }
+
 }
