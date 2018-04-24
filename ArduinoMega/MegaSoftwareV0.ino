@@ -99,6 +99,8 @@ void loop()
     }
     outString.concat(",");
     outString.concat(int(analogRead(2)));
+    //Serial.println(outString);
+    //int output[] = int (strtok(outString,","));
     
     String input = outString;
     int firstVal, secondVal;
@@ -107,9 +109,11 @@ void loop()
       if (input.substring(i, i+1) == ",") {
         firstVal = input.substring(0, i).toInt();
         secondVal = input.substring(i+1).toInt();
-        Serial.print(firstVal);
-        Serial.print(" , ");
-        Serial.println(secondVal);
+        if(firstVal!=1023){
+          Serial.print(firstVal);
+          Serial.print(" , ");
+          Serial.println(secondVal);
+        }
         break;
       }
     }
