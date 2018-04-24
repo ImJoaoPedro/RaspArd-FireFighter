@@ -46,4 +46,34 @@
     2 - Y Axis Accelerometer
     3 - X Axyx Accelerometer
 
+# Sensors Configuration
+
+    RaspberryPi receives:
+    - Everything from ArduinoMega
+    - Everything from ArduinoRoMeu
+    RaspberryPi sends:
+    - PWM to ArduinoRoMeu
+    - LCD to ArduinoRoMeu
+
+    ArduinoMega receives:
+    - Flame
+    - UVs
+    - IR Camera
+    - LDRs
+    ArduinoMega sends:
+    - 
+
+    ArduinoRoMeu receives:
+    - Accelerometer
+    - Potenciometer
+    - Buttons
+    - Sound
+    ArduinoRoMeu sends:
+    - PWM Cherokey
+    - LCD
+    - Siren
+
 # Sensors Description
+
+# Roadmap
+
