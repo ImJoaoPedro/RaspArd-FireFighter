@@ -4,43 +4,47 @@
 
 # TODO
 
-    - Finish a better readme
+    :ballot_box_with_check: Finish a better readme
     - Everything else
     - Create roadmap
 
 # Current Pin Configuration
     
-    RaspberryPi
+    **RaspberryPi**
     2 - SCL I2C (RoMeu)
     3 - SDA I2C (RoMeu)
     4 - Vim RoMeu
     5 - GND RoMeu
 
-    ArduinoMega
-    Digital
+    **ArduinoMega**
+    
+    **Digital**
     2 - Echo US
     3 - Trig US (yellow)
     4 - Echo US
     5 - Trig US (black)
     20 - SDA I2C (IRCamera)
     21 - SCL I2C (IRCamera)
-    Analog
+   
+    **Analog**
     0 - LDR Flor Left
     1 - LDR Flor Right
     2 - Flame Sensor
 
-    ArduinoRoMeu
+    **ArduinoRoMeu**
     I2C - LCD
-    Digital
-    2 - Green Button
+    
+    **Digital**
+    2 - Green Button
     3 - Red Button
     4 - Siren (blue/red)
     5 - Servo Camera IRCamera
-    6 - PWM Cherokey
-    7 - PWM Cherokey
-    9 - PWM Cherokey
-    10 - PWM Cherokey
-    Analog
+    6 - Left Motor Cherokey PWM (Speed Control)
+    7 - Left Motor Cherokey (Direction Control)
+    9 - Right Motor Cherokey (Direction Control)
+    10 - Right Motor Cherokey PWM (Speed Control)
+   
+    **Analog**
     0 - Potenciometer (Test Knob)
     1 - Sound Meter
     2 - Y Axis Accelerometer
@@ -48,32 +52,38 @@
 
 # Sensors Configuration
 
-    RaspberryPi receives:
-    - Everything from ArduinoMega
-    - Everything from ArduinoRoMeu
-    RaspberryPi sends:
-    - PWM to ArduinoRoMeu
-    - LCD to ArduinoRoMeu
+    **RaspberryPi receives**:
+    - Everything from ArduinoMega sent via Serial
+    - Everything from ArduinoRoMeu sent via I^2C
+    
+    **RaspberryPi sends**:
+    - Single characters to ArduinoRoMeu indicating the motor control (w,a,s,d,x->to stop motors) 
+    - Messages to LCD via I^2C
 
-    ArduinoMega receives:
-    - Flame
-    - UVs
-    - IR Camera
-    - LDRs
-    ArduinoMega sends:
-    - 
+    **ArduinoMega receives**:
+    - Flame Sesor values (int)
+    - Ultra Sound values (2 x int) 
+    - IR Camera byte streams->(int[9])
+    - LDR values (2 x int)
+    
+    ArduinoMega sends (via Serial):
+    - Ultra sound values to Pi
+    - LDR values
+    - Flame Sensor value
+    - Triplet indicating the camera value of the flame (X,Y) if detected
 
-    ArduinoRoMeu receives:
-    - Accelerometer
-    - Potenciometer
-    - Buttons
-    - Sound
+    ArduinoRoMeu receives :
+    - Accelerometer ( 2 x int) (X,Y) values
+    - Potenciometer (int (via analog))
+    - Buttons (RED and GREEN) (2 x boolean)
+    - Sound (int)
+    
     ArduinoRoMeu sends:
-    - PWM Cherokey
-    - LCD
-    - Siren
+    - (To motor Drivers) Motor control Cherokey
+    - (To Blue LED) Siren signal 
+    - (To Pi) Potenciometer value, Buttons values, Sound value
 
-# Sensors Description
+# Sensors Description :shipit:
 
-# Roadmap
+# Roadmap :shipit:
 
