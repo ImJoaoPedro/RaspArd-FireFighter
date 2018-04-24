@@ -73,7 +73,29 @@
     - LCD
     - Siren
 
-# Sensors Description
+# Sensors Description (Work In Progress)
+
+    IR Camera
+    returns (x, y, int), int goes from 0 (Hot) to 1023 (Cold)
+
+    UV Sensor
+    - 
+    
+    Buttons
+
+    LDRs
+
+    Accelerometer
+
+    Potenciometer
+
+    Sound Meter
+
+    PWM Cherokey
+
+    LCD
+
+    Siren
 
 # Roadmap
 
