@@ -1,5 +1,11 @@
 """
 Raspberry Pi code to receive input from 2 different arduinos
+
+TO DO:
+- i2c controller to PWM
+- sensors calculations
+- etc
+
 """
 
 #try import in case sudo is needed
