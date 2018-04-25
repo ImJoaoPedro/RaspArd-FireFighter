@@ -17,6 +17,7 @@
     5 - GND RoMeu
 
     ArduinoMega
+    I2C - Pixy camera
     Digital
     2 - Echo US
     3 - Trig US (yellow)
@@ -63,6 +64,7 @@
     - Ultra Sound values (2 x int) 
     - IR Camera byte streams->(int[9])
     - LDR values (2 x int)
+    -Pixi Camera signal (change to pi?)
     
     ArduinoMega sends (via Serial):
     - Ultra sound values to Pi
@@ -75,6 +77,7 @@
     - Potenciometer (int (via analog))
     - Buttons (RED and GREEN) (2 x boolean)
     - Sound (int)
+   
     
     ArduinoRoMeu sends:
     - (To motor Drivers) Motor control Cherokey
