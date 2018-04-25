@@ -17,7 +17,6 @@
     5 - GND RoMeu
 
     **ArduinoMega**
-    
     **Digital**
     2 - Echo US
     3 - Trig US (yellow)
@@ -25,15 +24,15 @@
     5 - Trig US (black)
     20 - SDA I2C (IRCamera)
     21 - SCL I2C (IRCamera)
-   
     **Analog**
     0 - LDR Flor Left
     1 - LDR Flor Right
     2 - Flame Sensor
+    3 - X Axyx Accelerometer
+    2 - Y Axis Accelerometer
 
     **ArduinoRoMeu**
     I2C - LCD
-    
     **Digital**
     2 - Green Button
     3 - Red Button
@@ -43,12 +42,11 @@
     7 - Left Motor Cherokey (Direction Control)
     9 - Right Motor Cherokey (Direction Control)
     10 - Right Motor Cherokey PWM (Speed Control)
-   
     **Analog**
     0 - Potenciometer (Test Knob)
     1 - Sound Meter
-    2 - Y Axis Accelerometer
-    3 - X Axyx Accelerometer
+    //2 - Y Axis Accelerometer
+    //3 - X Axyx Accelerometer
 
 # Sensors Configuration
 
