@@ -18,7 +18,6 @@ ser.port = "/dev/ttyACM0"
 ser.baudrate=9600
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(11, GPIO.IN)
-print(GPIO.getmode())
 
 #flag for loop
 active = True
@@ -27,3 +26,4 @@ active = True
 while active:
     read_ser=ser.readline()
     print(read_ser)
+    print(GPIO.getmode())
