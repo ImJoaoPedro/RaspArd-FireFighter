@@ -113,8 +113,7 @@ void receiveData(int byteCount){
 
     Serial.print("data received: ");
     Serial.println(number);
-    if (number == 1){
-      if (state == 0){
+    if (number == 1 && state == 0){
         digitalWrite(13, HIGH); // set the LED on
         state = 1;
         readIRCam();
