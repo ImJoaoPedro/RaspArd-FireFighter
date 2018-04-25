@@ -56,6 +56,7 @@ void loop()
    getCoordinates();
    getAnalogs();
 
+   out+= String(result[0]);out += + ",";
    out+= String(result[1]);out += + ",";
    out+= String(result[2]);out += + ",";
    out+= String(result[3]);out += + ",";
