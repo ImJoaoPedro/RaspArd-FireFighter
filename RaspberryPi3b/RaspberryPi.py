@@ -19,11 +19,19 @@ ser.baudrate=9600
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(11, GPIO.IN)
 
+#def input from ArduinoMega
+ardInput = []
+def assignInput(input):
+    ardInput = input.split(",")
+
 #flag for loop
 active = True
 
 #loop
 while active:
     read_ser=ser.readline()
-    print(read_ser)
-    print(GPIO.getmode())
+    print(read_ser)             #testing purposes
+    assignInput(read_ser)
+    print(ardInput)             #testing purposes
+
+    print(GPIO.getmode())       #testing purposes
