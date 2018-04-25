@@ -20,6 +20,16 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(11, GPIO.IN)
 
 #def input from ArduinoMega
+#input:
+#[0]Right Distance
+#[1]Left Distance
+#[2]X flame coordinate
+#[3]Y flame coordinate
+#[4]Left LDR Pin
+#[5]Right LDR Pin
+#[6]Flame Sensor Pin
+#[7]Axis X
+#[8]Axis Y
 ardInput = []
 def assignInput(input):
     ardInput = input.split(",")
