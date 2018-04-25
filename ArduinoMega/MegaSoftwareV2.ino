@@ -9,10 +9,7 @@
 #define A_X  A3
 #define A_Y  A4
 
-int val_x,val_y;
-
 int result[7];
-
 
 int IRsensorAddress = 0xB0;
 //int IRsensorAddress = 0x58;
@@ -20,11 +17,6 @@ int slaveAddress;
 int ledPin = 13;
 boolean ledState = false;
 byte data_buf[16];
-int i;
-
-int Ix[4];
-int Iy[4];
-int s;
 
 void Write_2bytes(byte d1, byte d2)
 {
@@ -63,7 +55,7 @@ void loop()
    out+= String(getDistance(LeftTrigPin,LeftEchoPin));out += + ",";
    getCoordinates();
    getAnalogs();
-   
+
    out+= String(result[1]);out += + ",";
    out+= String(result[2]);out += + ",";
    out+= String(result[3]);out += + ",";
@@ -89,6 +81,9 @@ int getDistance(int trigPin, int echoPin){
 }
 
 void getCoordinates(){
+  int Ix[4];
+  int Iy[4];
+  int s;
   ledState = !ledState;
     if (ledState) { digitalWrite(ledPin,HIGH); } else { digitalWrite(ledPin,LOW); }
 
@@ -100,7 +95,7 @@ void getCoordinates(){
     Wire.requestFrom(slaveAddress, 16);        // Request the 2 byte heading (MSB comes first)
     for (i=0;i<16;i++) { data_buf[i]=0; }
     i=0;
-    while(Wire.available() && i < 16) { 
+    while(Wire.available() && i < 16) {
         data_buf[i] = Wire.read();
         i++;
     }
@@ -133,17 +128,17 @@ void getCoordinates(){
     {
       if (Ix[i] < 1000)
         outString.concat("");
-      if (Ix[i] < 100)  
+      if (Ix[i] < 100)
         outString.concat("");
-      if (Ix[i] < 10)  
+      if (Ix[i] < 10)
         outString.concat("");
       outString.concat( int(Ix[i]) );
       outString.concat(",");
       if (Iy[i] < 1000)
         outString.concat("");
-      if (Iy[i] < 100)  
+      if (Iy[i] < 100)
         outString.concat("");
-      if (Iy[i] < 10)  
+      if (Iy[i] < 10)
         outString.concat("");
       outString.concat( int(Iy[i]) );
       if (i<3)
@@ -153,10 +148,10 @@ void getCoordinates(){
     outString.concat(int(analogRead(2)));
     //Serial.println(outString);
     //int output[] = int (strtok(outString,","));
-    
+
     String input = outString;
-    
-    
+
+
     for (int i = input.length(); i > 0 ; i--) {
       if (input.substring(i, i+1) == ",") {
         if(input.substring(0, i).toInt()!=1023){
@@ -172,6 +167,7 @@ void getCoordinates(){
 }
 
 void getAnalogs(){
+  int val_x,val_y;
   result[2] = analogRead(LeftLDRPin);
   result[3] = analogRead(RightLDRPin);
   result[4] = analogRead(FlameSensorPin);
@@ -185,5 +181,3 @@ void getAnalogs(){
    val_x=0;
    val_y=0;
 }
-
-
