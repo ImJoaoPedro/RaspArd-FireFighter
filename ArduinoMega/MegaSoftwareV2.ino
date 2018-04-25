@@ -94,8 +94,8 @@ void getCoordinates(){
     Wire.endTransmission();
 
     Wire.requestFrom(slaveAddress, 16);        // Request the 2 byte heading (MSB comes first)
-    for (i=0;i<16;i++) { data_buf[i]=0; }
-    i=0;
+    for (int i=0;i<16;i++) { data_buf[i]=0; }
+    int i=0;
     while(Wire.available() && i < 16) {
         data_buf[i] = Wire.read();
         i++;
