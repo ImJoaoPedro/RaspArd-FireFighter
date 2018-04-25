@@ -9,7 +9,7 @@
     - Create roadmap
 
 # Current Pin Configuration
-    
+
     RaspberryPi
     2 - SCL I2C (RoMeu)
     3 - SDA I2C (RoMeu)
@@ -54,18 +54,18 @@
     RaspberryPi receives:
     - Everything from ArduinoMega sent via Serial
     - Everything from ArduinoRoMeu sent via I^2C
-    
+
     RaspberryPi sends:
-    - Single characters to ArduinoRoMeu indicating the motor control (w,a,s,d,x->to stop motors) 
+    - Single characters to ArduinoRoMeu indicating the motor control (w,a,s,d,x->to stop motors)
     - Messages to LCD via I^2C
 
     ArduinoMega receives:
     - Flame Sesor values (int)
-    - Ultra Sound values (2 x int) 
+    - Ultra Sound values (2 x int)
     - IR Camera byte streams->(int[9])
     - LDR values (2 x int)
     -Pixi Camera signal (change to pi?)
-    
+
     ArduinoMega sends (via Serial):
     - Ultra sound values to Pi
     - LDR values
@@ -77,22 +77,22 @@
     - Potenciometer (int (via analog))
     - Buttons (RED and GREEN) (2 x boolean)
     - Sound (int)
-   
-    
+
+
     ArduinoRoMeu sends:
     - (To motor Drivers) Motor control Cherokey
-    - (To Blue LED) Siren signal 
+    - (To Blue LED) Siren signal
     - (To Pi) Potenciometer value, Buttons values, Sound value
 
-<<<<<<< HEAD
+
 # Sensors Description (Work In Progress)
 
     IR Camera
     returns (x, y, int), int goes from 0 (Hot) to 1023 (Cold)
 
     UV Sensor
-    - 
-    
+    -
+
     Buttons
 
     LDRs
@@ -108,9 +108,11 @@
     LCD
 
     Siren
-=======
+
 # Sensors Description :shipit:
->>>>>>> ebe2b5e2fcd8be92f8e6930265e8bd675f7a82b4
 
 # Roadmap :shipit:
 
+# :shipit:
+
+  ebe2b5e2fcd8be92f8e6930265e8bd675f7a82b4
