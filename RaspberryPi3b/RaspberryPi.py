@@ -24,6 +24,8 @@ ser.port = "/dev/ttyACM0"
 ser.baudrate=9600
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(11, GPIO.IN)
+ser.open()
+print(GPIO.getmode())       #testing purposes
 
 #def input from ArduinoMega
 #input:
@@ -38,16 +40,17 @@ GPIO.setup(11, GPIO.IN)
 #[8]Axis Y
 ardInput = []
 def assignInput(input):
-    ardInput = input.split(",")
+    ardInput = input.split(',')
+    print(ardInput)
 
 #flag for loop
 active = True
 
 #loop
 while active:
-    read_ser=ser.readline()
-    print(read_ser)             #testing purposes
+    read_ser=str(ser.readline())
+    #print(read_ser)             #testing purposes
     assignInput(read_ser)
-    print(ardInput)             #testing purposes
+    #print(ardInput)             #testing purposes
 
-    print(GPIO.getmode())       #testing purposes
+    
