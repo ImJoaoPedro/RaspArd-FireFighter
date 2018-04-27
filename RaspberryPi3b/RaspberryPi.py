@@ -9,6 +9,7 @@ TO DO:
 """
 
 #try import in case sudo is needed
+import LCD-i2c-lib
 import serial
 import time
 try:
@@ -22,10 +23,14 @@ except RuntimeError:
 ser=serial.Serial()
 ser.port = "/dev/ttyACM0"
 ser.baudrate=9600
+ser.open()
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(11, GPIO.IN)
-ser.open()
 print(GPIO.getmode())       #testing purposes
+
+#LCD
+lcd = I2C_LCD_driver.lcd()
+lcd.lcd_display_string("IloveFIRE", 1)
 
 #def input from ArduinoMega
 #input:
@@ -43,6 +48,7 @@ def assignInput(input):
     ardInput = input.split(',')
     print(ardInput)
 
+
 #flag for loop
 active = True
 
@@ -52,5 +58,3 @@ while active:
     #print(read_ser)             #testing purposes
     assignInput(read_ser)
     #print(ardInput)             #testing purposes
-
-    
