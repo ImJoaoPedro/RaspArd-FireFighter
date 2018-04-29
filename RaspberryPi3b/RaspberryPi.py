@@ -20,7 +20,7 @@ import serial
 import time
 try:
     import RPi.GPIO as GPIO
-    import lcd.LCD-i2c-lib
+    import lcd.lcdi2clib
 except RuntimeError:
     print("error importing, try sudo")
 
@@ -45,16 +45,16 @@ def StringToBytes(val):
 
 #ArduinoRomeo
 bus = SMBus(1)
-slaveAddress = 0x??
+slaveAddress = "0x??"
 
 #LCD
 lcd = I2C_LCD_driver.lcd()
 lcddisplay = ""
-if (mode == 1):
+if mode == 1:
     lcd.lcd_display_string(lcddisplay, 1)
-elif (mode == 2):
+elif mode == 2:
     lcd.lcd_display_string("safe", 1)
-elif (mode == 3):
+elif mode == 3:
     lcd.lcd_display_string("", 1)
 
 #def input from ArduinoMega
@@ -74,6 +74,18 @@ def assignInput(input):
     lcd.lcd_display_string(ardInput[1] + ardInput[0], 1)
     print(ardInput)
 
+def sendMotors(direction):
+    if direction == 'w':
+        print(direction)
+    elif direction == 'a':
+        print(direction)
+    elif direction == 's':
+        print(direction)
+    elif direction == 'd':
+        print(direction)
+    elif direction == 'x':
+        print(direction)
+
 def move():
     leftDistance = ardInput[1]
     rightDistance = ardInput[0]
@@ -87,21 +99,10 @@ def move():
         sendMotors('d')
         sendMotors('x')
 
-def sendMotors(direction):
-    if(direction == 'w'):
-
-    elif(direction == 'a'):
-
-    elif(direction == 's'):
-
-    elif(direction == 'd'):
-
-    elif(direction == 'x'):
-
 def locateFlame():
     x = ardInput[2]
     y = ardInput[3]
-    print("x coordinate: " + x"\ny coordinate: " + y)
+    print("x coordinate: " + x "\ny coordinate: " + y)
     flameProx = ardInput[6]
     print("\nthe flame sensor is sensing: " + flameProx)
 
