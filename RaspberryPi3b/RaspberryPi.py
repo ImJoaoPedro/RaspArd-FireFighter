@@ -7,16 +7,24 @@ TO DO:
 - etc
 
 """
+#debug options
+print("1 - Normal\n2 - No LCD\n3 - Debug mode")
+mode = input("Set execution mode: ")
+
+#debug mode with preset ardInput
+debugInput = [65, 55, 10, 10, 125, 125, 5, 2000, 1500]
 
 #try import in case sudo is needed
-import LCD-i2c-lib
+import smbus
 import serial
 import time
 try:
     import RPi.GPIO as GPIO
+    import lcd.LCD-i2c-lib
 except RuntimeError:
     print("error importing, try sudo")
 
+#ArduinoMega
 #change ACM number as found from ls /dev/tty/ACM*
 #consider ser.port = input()
 #check channel irl
@@ -28,9 +36,26 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(11, GPIO.IN)
 print(GPIO.getmode())       #testing purposes
 
+#String To Bytes
+def StringToBytes(val):
+    retVal = []
+    for c in val:
+            retVal.append(ord(c))
+    return retVal
+
+#ArduinoRomeo
+bus = SMBus(1)
+slaveAddress = 0x??
+
 #LCD
 lcd = I2C_LCD_driver.lcd()
-lcd.lcd_display_string("IloveFIRE", 1)
+lcddisplay = ""
+if (mode == 1):
+    lcd.lcd_display_string(lcddisplay, 1)
+elif (mode == 2):
+    lcd.lcd_display_string("safe", 1)
+elif (mode == 3):
+    lcd.lcd_display_string("", 1)
 
 #def input from ArduinoMega
 #input:
@@ -46,15 +71,58 @@ lcd.lcd_display_string("IloveFIRE", 1)
 ardInput = []
 def assignInput(input):
     ardInput = input.split(',')
+    lcd.lcd_display_string(ardInput[1] + ardInput[0], 1)
     print(ardInput)
 
+def move():
+    leftDistance = ardInput[1]
+    rightDistance = ardInput[0]
+    direction = ''
+    if(mode != 3):
+        sendMotors(direction)
+    else:
+        sendMotors('w')
+        sendMotors('a')
+        sendMotors('s')
+        sendMotors('d')
+        sendMotors('x')
+
+def sendMotors(direction):
+    if(direction == 'w'):
+
+    elif(direction == 'a'):
+
+    elif(direction == 's'):
+
+    elif(direction == 'd'):
+
+    elif(direction == 'x'):
+
+def locateFlame():
+    x = ardInput[2]
+    y = ardInput[3]
+    print("x coordinate: " + x"\ny coordinate: " + y)
+    flameProx = ardInput[6]
+    print("\nthe flame sensor is sensing: " + flameProx)
 
 #flag for loop
 active = True
 
 #loop
-while active:
-    read_ser=str(ser.readline())
-    #print(read_ser)             #testing purposes
-    assignInput(read_ser)
-    #print(ardInput)             #testing purposes
+if (mode == 1):
+    while active:
+        read_ser=str(ser.readline())
+        assignInput(read_ser)
+        locateFlame()
+        move()
+elif (mode == 2):
+    while active:
+        read_ser=str(ser.readline())
+        assignInput(read_ser)
+        locateFlame()
+        move()
+elif (mode == 3):
+    while active:
+        assignInput(debugInput)
+        locateFlame()
+        move()
