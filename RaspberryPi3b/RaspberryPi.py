@@ -12,17 +12,14 @@ print("1 - Normal\n2 - No LCD\n3 - Debug mode")
 mode = input("Set execution mode: ")
 
 #debug mode with preset ardInput
-debugInput = [65, 55, 10, 10, 125, 125, 5, 2000, 1500]
+debugInput = "65, 55, 10, 10, 125, 125, 5, 2000, 1500"
 
 #try import in case sudo is needed
-import smbus
+from smbus import SMBus
 import serial
 import time
-try:
-    import RPi.GPIO as GPIO
-    import lcd.lcdi2clib
-except RuntimeError:
-    print("error importing, try sudo")
+import RPi.GPIO as GPIO
+import I2C_LCD_driver
 
 #ArduinoMega
 #change ACM number as found from ls /dev/tty/ACM*
@@ -46,7 +43,7 @@ def StringToBytes(val):
 #ArduinoRomeo
 bus = SMBus(1)
 slaveAddress = "0x??"
-
+"""
 #LCD
 lcd = I2C_LCD_driver.lcd()
 lcddisplay = ""
@@ -56,7 +53,7 @@ elif mode == 2:
     lcd.lcd_display_string("safe", 1)
 elif mode == 3:
     lcd.lcd_display_string("", 1)
-
+"""
 #def input from ArduinoMega
 #input:
 #[0]Right Distance
@@ -68,11 +65,12 @@ elif mode == 3:
 #[6]Flame Sensor Pin
 #[7]Axis X
 #[8]Axis Y
-ardInput = []
+
 def assignInput(input):
+    #ardInput.clear()
     ardInput = input.split(',')
-    lcd.lcd_display_string(ardInput[1] + ardInput[0], 1)
-    print(ardInput)
+    return ardInput
+    #lcd.lcd_display_string(ardInput[1] + ardInput[0], 1)
 
 def sendMotors(direction):
     if direction == 'w':
@@ -102,7 +100,8 @@ def move():
 def locateFlame():
     x = ardInput[2]
     y = ardInput[3]
-    print("x coordinate: " + x "\ny coordinate: " + y)
+    print("x coordinate: " + x)
+    print("\ny coordinate: " + y)
     flameProx = ardInput[6]
     print("\nthe flame sensor is sensing: " + flameProx)
 
@@ -110,13 +109,17 @@ def locateFlame():
 active = True
 
 #loop
-if (mode == 1):
-    while active:
-        read_ser=str(ser.readline())
-        assignInput(read_ser)
+#if (mode == 1):
+while active:
+    read_ser=str(ser.readline())
+    #print(read_ser)
+    ardInput = assignInput(read_ser)
+    #assignInput(read_ser)
+    print(ardInput)
+    if ((len(ardInput)) == 10):
         locateFlame()
-        move()
-elif (mode == 2):
+        #move()
+'''elif (mode == 2):
     while active:
         read_ser=str(ser.readline())
         assignInput(read_ser)
@@ -127,3 +130,4 @@ elif (mode == 3):
         assignInput(debugInput)
         locateFlame()
         move()
+'''
