@@ -47,12 +47,6 @@ def StringToBytes(val):
 bus = SMBus(1)
 slaveAddress = "0x??"
 
-#LCD
-if (mode == 1):
-    lcd = I2C_LCD_driver.lcd()
-    lcddisplay = ""
-    lcd.lcd_display_string(lcddisplay, 1)
-
 #input from ArduinoMega
 #input:
 #[0]Right Distance
@@ -113,6 +107,12 @@ def locateFlame():
     print("\ny coordinate: " + y)
     flameProx = ardInput[6]
     print("\nthe flame sensor is sensing: " + flameProx)
+
+#LCD
+if (mode == 1):
+    lcd = I2C_LCD_driver.lcd()
+    lcddisplay = ""
+    lcd.lcd_display_string(lcddisplay, 1)
 
 #flag for loop
 active = True
