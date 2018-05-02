@@ -11,13 +11,18 @@
 # Current Pin Configuration
 
     RaspberryPi
+
     2 - SCL I2C (RoMeu)
     3 - SDA I2C (RoMeu)
     4 - Vim RoMeu
     5 - GND RoMeu
 
+
+
     ArduinoMega
+
     I2C - Pixy camera
+
     Digital
     2 - Echo US
     3 - Trig US (yellow)
@@ -25,6 +30,7 @@
     5 - Trig US (black)
     20 - SDA I2C (IRCamera)
     21 - SCL I2C (IRCamera)
+
     Analog
     0 - LDR Flor Left
     1 - LDR Flor Right
@@ -32,9 +38,13 @@
     3 - X Axyx Accelerometer
     4 - Y Axis Accelerometer
 
+
+
     ArduinoRoMeu
+
     I2C - LCD
-    Digital
+
+    Digital
     2 - Green Button
     3 - Red Button
     4 - Siren (blue/red)
@@ -43,11 +53,12 @@
     7 - Left Motor Cherokey (Direction Control)
     9 - Right Motor Cherokey (Direction Control)
     10 - Right Motor Cherokey PWM (Speed Control)
+
     Analog
     0 - Potenciometer (Test Knob)
     1 - Sound Meter
-    //2 - Y Axis Accelerometer
-    //3 - X Axyx Accelerometer
+    2 - Y Axis Accelerometer
+    3 - X Axyx Accelerometer
 
 # Sensors Configuration
 
@@ -64,7 +75,7 @@
     - Ultra Sound values (2 x int)
     - IR Camera byte streams->(int[9])
     - LDR values (2 x int)
-    -Pixi Camera signal (change to pi?)
+    - Pixi Camera signal (change to pi?)
 
     ArduinoMega sends (via Serial):
     - Ultra sound values to Pi
@@ -91,7 +102,6 @@
     returns (x, y, int), int goes from 0 (Hot) to 1023 (Cold)
 
     UV Sensor
-    -
 
     Buttons
 
