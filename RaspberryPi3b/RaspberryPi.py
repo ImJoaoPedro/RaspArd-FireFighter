@@ -7,6 +7,9 @@ TO DO:
 - etc
 
 """
+
+
+
 #debug options
 print("1 - Normal\n2 - No LCD\n3 - Debug mode")
 mode = input("Set execution mode: ")
@@ -31,7 +34,6 @@ ser.baudrate=9600
 ser.open()
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(11, GPIO.IN)
-print(GPIO.getmode())       #testing purposes
 
 #String To Bytes
 def StringToBytes(val):
@@ -43,18 +45,14 @@ def StringToBytes(val):
 #ArduinoRomeo
 bus = SMBus(1)
 slaveAddress = "0x??"
-"""
+
 #LCD
-lcd = I2C_LCD_driver.lcd()
-lcddisplay = ""
-if mode == 1:
+if (mode == 1):
+    lcd = I2C_LCD_driver.lcd()
+    lcddisplay = ""
     lcd.lcd_display_string(lcddisplay, 1)
-elif mode == 2:
-    lcd.lcd_display_string("safe", 1)
-elif mode == 3:
-    lcd.lcd_display_string("", 1)
-"""
-#def input from ArduinoMega
+
+#input from ArduinoMega
 #input:
 #[0]Right Distance
 #[1]Left Distance
@@ -65,13 +63,11 @@ elif mode == 3:
 #[6]Flame Sensor Pin
 #[7]Axis X
 #[8]Axis Y
-
 def assignInput(input):
-    #ardInput.clear()
-    ardInput = input.split(',')
-    return ardInput
-    #lcd.lcd_display_string(ardInput[1] + ardInput[0], 1)
+    auxInput = input.split(',')
+    return auxInput
 
+#work in progress
 def sendMotors(direction):
     if direction == 'w':
         print(direction)
@@ -84,6 +80,8 @@ def sendMotors(direction):
     elif direction == 'x':
         print(direction)
 
+#work in progress
+#need to setup i2c comms with RoMeu
 def move():
     leftDistance = ardInput[1]
     rightDistance = ardInput[0]
@@ -97,6 +95,9 @@ def move():
         sendMotors('d')
         sendMotors('x')
 
+#work in progress
+#assigns locally the input from ArduinoMega to x and y
+#prints the flame sensor value
 def locateFlame():
     x = ardInput[2]
     y = ardInput[3]
@@ -109,25 +110,19 @@ def locateFlame():
 active = True
 
 #loop
-#if (mode == 1):
+#length is currently 10 because of input error arduino based
 while active:
-    read_ser=str(ser.readline())
-    #print(read_ser)
-    ardInput = assignInput(read_ser)
-    #assignInput(read_ser)
+    if (mode == 1):
+        read_ser = str(ser.readline())
+        ardInput = assignInput(read_ser)
+        lcd.lcd_display_string(ardInput[1] + ardInput[0], 1)
+    elif (mode == 2):
+        read_ser = str(ser.readline())
+        ardInput = assignInput(read_ser)
+    elif (mode == 3):
+        read_ser = debugInput
+        ardInput = assignInput(read_ser)
     print(ardInput)
-    if ((len(ardInput)) == 10):
+    if ((len(ardInput)) == 10 || (len(ardInput)) == 9):
         locateFlame()
         #move()
-'''elif (mode == 2):
-    while active:
-        read_ser=str(ser.readline())
-        assignInput(read_ser)
-        locateFlame()
-        move()
-elif (mode == 3):
-    while active:
-        assignInput(debugInput)
-        locateFlame()
-        move()
-'''
