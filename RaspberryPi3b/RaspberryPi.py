@@ -66,7 +66,6 @@ def assignInput(input):
         auxInput[x] = re.sub("[^0-9]", "", auxInput[x])
         if (auxInput[x] == ''):
             del auxInput[x]
-        print(auxInput)     #testing
     return auxInput
 
 #work in progress
