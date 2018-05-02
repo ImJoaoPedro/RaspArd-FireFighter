@@ -111,6 +111,7 @@ active = True
 
 #loop
 #length is currently 10 because of input error arduino based
+#length should be 9
 while active:
     if (mode == 1):
         read_ser = str(ser.readline())
