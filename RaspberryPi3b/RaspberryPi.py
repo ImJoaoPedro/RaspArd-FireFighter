@@ -19,6 +19,7 @@ debugInput = "65, 55, 10, 10, 125, 125, 5, 2000, 1500"
 
 #try import in case sudo is needed
 from smbus import SMBus
+import re
 import serial
 import time
 import RPi.GPIO as GPIO
@@ -65,6 +66,13 @@ if (mode == 1):
 #[8]Axis Y
 def assignInput(input):
     auxInput = input.split(',')
+    #testing text format
+    #comment if necessary
+    for x in auxInput[]:
+        auxInput[x] = re.sub("[^0-9]", "", auxInput[x])
+        if (auxInput[x] == ''):
+            del auxInput[x]
+        print(auxInput)     #testing
     return auxInput
 
 #work in progress
